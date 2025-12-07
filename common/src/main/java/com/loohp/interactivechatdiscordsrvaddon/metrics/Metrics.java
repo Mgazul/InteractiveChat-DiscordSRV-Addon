@@ -20,7 +20,6 @@
 
 package com.loohp.interactivechatdiscordsrvaddon.metrics;
 
-import com.loohp.interactivechat.libs.com.loohp.platformscheduler.Scheduler;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -122,7 +121,7 @@ public class Metrics {
                         this::appendServiceData,
                         isFolia
                                 ? null
-                                : submitDataTask -> Scheduler.runTask(plugin, submitDataTask),
+                                : submitDataTask -> Bukkit.getScheduler().runTask(plugin, submitDataTask),
                         plugin::isEnabled,
                         (message, error) -> this.plugin.getLogger().log(Level.WARNING, message, error),
                         (message) -> this.plugin.getLogger().log(Level.INFO, message),

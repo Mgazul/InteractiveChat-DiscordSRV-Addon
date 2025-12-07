@@ -20,7 +20,6 @@
 
 package com.loohp.interactivechatdiscordsrvaddon.listeners;
 
-import com.loohp.interactivechat.libs.com.loohp.platformscheduler.Scheduler;
 import com.loohp.interactivechat.utils.ChatColorUtils;
 import com.loohp.interactivechat.utils.HashUtils;
 import com.loohp.interactivechatdiscordsrvaddon.InteractiveChatDiscordSrvAddon;
@@ -39,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import org.bukkit.Bukkit;
 
 public class DiscordInteractionEvents extends ListenerAdapter {
 
@@ -68,7 +68,7 @@ public class DiscordInteractionEvents extends ListenerAdapter {
             }
             REGISTER.put(id, interactionData);
         }
-        Scheduler.runTaskLaterAsynchronously(InteractiveChatDiscordSrvAddon.plugin, () -> {
+        Bukkit.getScheduler().runTaskLaterAsynchronously(InteractiveChatDiscordSrvAddon.plugin, () -> {
             for (String id : interactionIds) {
                 REGISTER.remove(id);
             }
